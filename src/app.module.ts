@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { MoviesModule } from './movies/movies.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
     MongooseModule.forRoot(
       'mongodb+srv://dbuser_e:dbpassword_e@cluster0.aog41.mongodb.net/movieWeb?retryWrites=true&w=majority',
     ),
+    MoviesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
