@@ -17,13 +17,15 @@ export class MoviesService {
       id: movie._id,
       title: movie.title,
       description: movie.description,
+      year: movie.year,
       image: movie.image,
     };
   }
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     const movie = new this.movieModel(createMovieDto);
-    return movie.save();
+    await movie.save();
+    return this._getMovieDetails(movie);
   }
 
   async findAll(): Promise<MovieEntity[]> {

@@ -12,6 +12,9 @@ export class Movie {
   description: string;
 
   @Prop({ required: false, default: '' })
+  year: string;
+
+  @Prop({ required: false, default: '' })
   image: string;
 }
 
