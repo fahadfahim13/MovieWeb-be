@@ -22,6 +22,10 @@ export class MoviesService {
     };
   }
 
+  async find(options) {
+    return this.movieModel.find(options).exec();
+  }
+
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     const movie = new this.movieModel(createMovieDto);
     await movie.save();
