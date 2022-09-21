@@ -12,4 +12,10 @@ export class UsersController {
   getUserById(@Param('id') id: string): Promise<UserDetails | null> {
     return this.usersService.findbyId(id);
   }
+
+  @UseGuards(JwtGuard)
+  @Get('')
+  getUsers(): Promise<UserDetails[] | null> {
+    return this.usersService.findAll();
+  }
 }

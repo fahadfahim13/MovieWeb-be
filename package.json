@@ -17,7 +17,9 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "seed": "ts-node src/movies/seeder.ts",
+    "seed:refresh": "ts-node src/movies/seeder.ts --refresh"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -28,7 +30,9 @@
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@types/faker": "^6.6.9",
     "bcrypt": "^5.0.1",
+    "faker": "^6.6.6",
     "mongoose": "^6.6.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",

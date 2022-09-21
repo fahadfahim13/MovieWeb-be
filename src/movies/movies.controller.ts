@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -23,6 +24,26 @@ export class MoviesController {
   @Get()
   findAll() {
     return this.moviesService.findAll();
+  }
+
+  @Get('search')
+  async search(
+    @Body() body: { value?: string; page?: number; limit?: number },
+  ) {
+    const { value = '', page = 1, limit = 10 } = body;
+    const { data, options } = await this.moviesService.search(
+      value,
+      page,
+      limit,
+    );
+    const total = await this.moviesService.count(options);
+    const last_page = Math.ceil(total / limit);
+    return {
+      data,
+      total,
+      page,
+      last_page,
+    };
   }
 
   @Get(':id')

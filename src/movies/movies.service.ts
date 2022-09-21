@@ -26,6 +26,32 @@ export class MoviesService {
     return this.movieModel.find(options).exec();
   }
 
+  async count(options) {
+    return this.movieModel.count(options).exec();
+  }
+
+  async search(
+    value: string,
+    page: number,
+    limit: number,
+  ): Promise<{ data: MovieEntity[]; options: any }> {
+    let options = {};
+    if (value) {
+      options = {
+        $or: [
+          { title: new RegExp(value, 'i') },
+          { description: new RegExp(value, 'i') },
+        ],
+      };
+    }
+    const movies = await this.movieModel
+      .find(options)
+      .skip((page - 1) * limit)
+      .limit(limit);
+    const result = movies.map((m) => this._getMovieDetails(m));
+    return { data: result, options };
+  }
+
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     const movie = new this.movieModel(createMovieDto);
     await movie.save();
