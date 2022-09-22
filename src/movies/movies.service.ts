@@ -40,7 +40,7 @@ export class MoviesService {
       options = {
         $or: [
           { title: new RegExp(value, 'i') },
-          { description: new RegExp(value, 'i') },
+          // { description: new RegExp(value, 'i') },
         ],
       };
     }

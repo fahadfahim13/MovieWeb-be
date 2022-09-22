@@ -26,7 +26,7 @@ export class MoviesController {
     return this.moviesService.findAll();
   }
 
-  @Get('search')
+  @Post('search')
   async search(
     @Body() body: { value?: string; page?: number; limit?: number },
   ) {
