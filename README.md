@@ -10,6 +10,8 @@ $ npm install
 
 ## Running the app
 
+Before running the app, create a .env file in the root directory and declare a variable `MONGO_URL` with a valid MongoDB credential.
+
 ```bash
 # development
 $ npm run start
