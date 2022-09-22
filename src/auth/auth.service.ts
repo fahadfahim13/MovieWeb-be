@@ -42,7 +42,7 @@ export class AuthService {
   async register(user: Readonly<NewUserDTO>): Promise<UserDetails | string> {
     const existingUser = await this.userService.findbyEmail(user.email);
     if (existingUser) {
-      return 'Email is taken';
+      throw new BadRequestException('Email is taken');
     }
     const hashedPassword = await this.hashPassword(user.password);
     const newUser = await this.userService.create(
